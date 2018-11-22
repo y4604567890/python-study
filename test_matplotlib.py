@@ -1,9 +1,14 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+def fsum(a):
+    for i in range(len(a) - 1, -1, -1):
+        for j in range(i):
+            a[i] += a[j]
+
 XLEFT = -111
 XRIGHT = 111
-NUM = 13
+NUM = 20
 
 xdata = np.random.random([2, NUM])
 
@@ -11,9 +16,10 @@ xdata1 = np.linspace(XLEFT, XRIGHT, NUM)
 xdata2 = xdata1
 ydata1 = xdata[0, :]
 ydata2 = xdata[1, :]
+fsum(ydata2)
 
-maxitem = max(max(ydata1),max(ydata2))
-minitem = min(min(ydata1),min(ydata2))
+maxitem = np.max(np.append(ydata1, ydata2))
+minitem = np.min(np.append(ydata1, ydata2))
 
 fig = plt.figure()
 ax = fig.add_subplot(1, 1, 1)
